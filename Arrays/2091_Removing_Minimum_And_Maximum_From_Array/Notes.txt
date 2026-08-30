@@ -1,0 +1,92 @@
+LeetCode 2091 - Removing Minimum and Maximum From Array
+
+Idea:
+We can delete elements only from the front or back.
+
+To remove both min and max elements, there are only 3 possibilities:
+
+1. Remove both from the front.
+2. Remove both from the back.
+3. Remove one from the front and one from the back.
+
+--------------------------------------------------
+
+Step 1:
+Find the index of:
+- Minimum element
+- Maximum element
+
+Example:
+nums = [2,10,7,5,4,1,8,6]
+
+minIndex = 5
+maxIndex = 1
+
+--------------------------------------------------
+
+Step 2:
+Store smaller index in left and larger index in right.
+
+left = min(minIndex, maxIndex)
+right = max(minIndex, maxIndex)
+
+left = 1
+right = 5
+
+--------------------------------------------------
+
+Case 1: Delete from Front
+
+Need to delete until right index is removed.
+
+front = right + 1
+
+front = 5 + 1 = 6
+
+--------------------------------------------------
+
+Case 2: Delete from Back
+
+Need to delete until left index is removed.
+
+back = n - left
+
+back = 8 - 1 = 7
+
+--------------------------------------------------
+
+Case 3: Delete from Both Sides
+
+Delete until left from front.
+Delete until right from back.
+
+frontBack = (left + 1) + (n - right)
+
+frontBack = (1 + 1) + (8 - 5)
+frontBack = 2 + 3
+frontBack = 5
+
+--------------------------------------------------
+
+Answer
+
+min(front, back, frontBack)
+
+min(6, 7, 5) = 5
+
+--------------------------------------------------
+
+Pattern:
+Array + Greedy Observation
+
+Key Learning:
+When operations are allowed only from array ends,
+always think about:
+1. Front only
+2. Back only
+3. Front + Back
+
+Calculate all possibilities and take the minimum.
+
+Time Complexity : O(n)
+Space Complexity : O(1)
